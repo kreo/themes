@@ -47,9 +47,7 @@ def file_name_to_display(file_name: str) -> str:
     file_name = Path(file_name).with_suffix("").name
 
     split = file_name.split("_")
-    output = []
-    for s in split:
-        output.append(s.capitalize())
+    output = [s.capitalize() for s in split]
     return " ".join(output)
 
 
@@ -78,9 +76,7 @@ def main():
     ensure_output_dir(args.output_dir)
 
     filenames = get_all_input_files(args.input_dir)
-    markdown = []
-    markdown.append("|Theme name | Preview|")
-    markdown.append("| --- | --- |")
+    markdown = ["|Theme name | Preview|", "| --- | --- |"]
     svg = open(args.svg_path, "r").read()
     svg_dir = os.path.join(args.output_dir, "previews")
     os.makedirs(svg_dir, exist_ok=True)
